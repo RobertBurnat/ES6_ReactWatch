@@ -55,12 +55,24 @@ class Stopwatch extends React.Component {
 		clearInterval(this.watch);
 	}
 
+	restart() {
+		this.running = false;
+		this.setState({
+			times: {
+			miliseconds: 0,
+			seconds: 0,
+			minutes: 0
+		}
+		});
+	}
+
 	render() {
 		return(
 			<div className='container'>
 				<nav className='buttons'>
 					<button onClick={e => this.start(e)}>Start</button>
 					<button onClick={e => this.stop(e)}>Stop</button>
+					<button onClick={e => this.restart(e)}>Reset</button>
 				</nav>
 				{this.format(this.state.times)}
 			</div>
