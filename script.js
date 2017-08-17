@@ -31,15 +31,23 @@ class Stopwatch extends React.Component {
 	}
 
 	calculate() {
-		this.state.times.miliseconds += 1;
-		if(this.state.times.miliseconds >= 100) {
-			this.state.times.seconds += 1;
-			this.state.times.miliseconds = 0;
+		let newTimes = {
+			miliseconds: this.state.times.miliseconds,
+			seconds : this.state.times.seconds,
+			minutes: this.state.times.minutes
+		};
+
+		newTimes.miliseconds += 1;
+
+		if(newTimes.miliseconds >= 100) {
+			newTimes.seconds += 1;
+			newTimes.miliseconds = 0;
 		}
-		if (this.state.times.seconds >=60) {
-			this.state.times.minutes += 1;
-			this.state.times.seconds = 0;
+		if (newTimes.seconds >=60) {
+			newTimes.minutes += 1;
+			newTimes.seconds = 0;
 		}
+		this.setState({times: newTimes});
 	}
 
 	stop() {
